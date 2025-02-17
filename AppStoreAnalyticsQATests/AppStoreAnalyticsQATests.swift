@@ -5,13 +5,27 @@
 //  Created by Simardeep Singh on 2/16/25.
 //
 
-import Testing
+import XCTest
 @testable import AppStoreAnalyticsQA
 
-struct AppStoreAnalyticsQATests {
+final class AppStoreAnalyticsQATests: XCTestCase {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    func testAnalyticsDataDecoding() throws {
+        let json = """
+        [
+            {
+                "id": "\(UUID().uuidString)",
+                "metric": "Downloads",
+                "value": 1500
+            }
+        ]
+        """.data(using: .utf8)!
+        
+        let analytics = try JSONDecoder().decode([AnalyticsData].self, from: json)
+        XCTAssertEqual(analytics.count, 1)
+        XCTAssertEqual(analytics.first?.metric, "Downloads")
+        XCTAssertEqual(analytics.first?.value, 1500)
     }
-
+    
+    // Additional tests can be added here.
 }

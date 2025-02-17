@@ -4,7 +4,7 @@
 //
 //  Created by Simardeep Singh on 2/16/25.
 //
-
+import Foundation
 import SwiftUI
 
 @main
