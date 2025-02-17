@@ -20,14 +20,10 @@ jobs:
       - name: Set up Xcode
         run: sudo xcode-select -switch /Applications/Xcode.app
 
-      - name: Install Dependencies (CocoaPods)
-        run: pod install --repo-update
-        working-directory: ./  # Adjust if your Podfile is inside a subdirectory
-
       - name: Build and Run Unit Tests
         run: |
           xcodebuild clean test \
-          -workspace AppStoreAnalyticsQA.xcworkspace \
+          -project AppStoreAnalyticsQA.xcodeproj \  # Use `.xcodeproj` instead of `.xcworkspace`
           -scheme AppStoreAnalyticsQA \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
@@ -53,7 +49,7 @@ jobs:
       - name: Run UI Tests
         run: |
           xcodebuild clean test \
-          -workspace AppStoreAnalyticsQA.xcworkspace \
+          -project AppStoreAnalyticsQA.xcodeproj \  # Use `.xcodeproj`
           -scheme AppStoreAnalyticsQAUITests \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
