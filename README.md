@@ -29,7 +29,7 @@ To get a local copy up and running, follow these steps:
    git clone https://github.com/Simar710/AppStoreAnalyticsQA.git
    ```
    
-2.**Open the project in xcode to Build and Run the project:** 
+2. **Open the project in xcode to Build and Run the project:** 
    - Press `⌘ + B` to build and `⌘ + R` to run the project.
 
 3. **Navigate to the Scripts Directory to run api backend tests:**
