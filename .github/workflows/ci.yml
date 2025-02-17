@@ -17,13 +17,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Check Xcode Version (Before Setup)
-        run: xcodebuild -version
-
-      - name: Select Xcode 16.2
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
-
-      - name: Check Xcode Version (After Setup)
+      - name: Check Xcode Version
         run: xcodebuild -version
 
       - name: Build and Run Unit Tests
@@ -48,9 +42,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Select Xcode 16.2
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
       - name: Run UI Tests
         run: |
