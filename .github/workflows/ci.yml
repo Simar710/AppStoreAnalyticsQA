@@ -1,0 +1,86 @@
+name: iOS CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - development
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
+
+      - name: Install Dependencies (CocoaPods)
+        run: pod install --repo-update
+        working-directory: ./  # Adjust if your Podfile is inside a subdirectory
+
+      - name: Build and Run Unit Tests
+        run: |
+          xcodebuild clean test \
+          -workspace AppStoreAnalyticsQA.xcworkspace \
+          -scheme AppStoreAnalyticsQA \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - name: Upload Unit Test Results
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/
+
+  ui-tests:
+    runs-on: macos-latest
+    needs: build-and-test  # Runs after unit tests
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app
+
+      - name: Run UI Tests
+        run: |
+          xcodebuild clean test \
+          -workspace AppStoreAnalyticsQA.xcworkspace \
+          -scheme AppStoreAnalyticsQAUITests \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - name: Upload UI Test Results
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-test-results
+          path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/
+
+  api-tests:
+    runs-on: ubuntu-latest
+    needs: build-and-test  # Runs after unit tests
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: pip install -r Scripts/requirements.txt || true
+
+      - name: Run API Tests
+        run: python Scripts/api_test.py
+
