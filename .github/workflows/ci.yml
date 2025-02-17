@@ -11,11 +11,14 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: macos-latest
+    runs-on: macos-13
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Check Xcode Version
+        run: xcodebuild -version
 
       - name: Set up Xcode
         run: sudo xcode-select -switch /Applications/Xcode.app
@@ -25,18 +28,18 @@ jobs:
           xcodebuild clean test \
           -project AppStoreAnalyticsQA.xcodeproj \
           -scheme AppStoreAnalyticsQA \
-          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+          -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=16.2' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
       - name: Upload Unit Test Results
-        if: success() || failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: unit-test-results
           path: ~/Library/Developer/Xcode/DerivedData/**/Logs/Test/
 
   ui-tests:
-    runs-on: macos-latest
+    runs-on: macos-13
     needs: build-and-test
 
     steps:
@@ -51,11 +54,11 @@ jobs:
           xcodebuild clean test \
           -project AppStoreAnalyticsQA.xcodeproj \
           -scheme AppStoreAnalyticsQAUITests \
-          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+          -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=16.2' \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
       - name: Upload UI Test Results
-        if: success() || failure()
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ui-test-results
