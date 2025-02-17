@@ -51,6 +51,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Clean Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+      - name: Reset Simulators
+        run: |
+          xcrun simctl shutdown all
+          xcrun simctl erase all
+
+      - name: Wait for Simulator to Boot
+        run: sleep 20
+
+      - name: List Available Simulators
+        run: xcrun simctl list devices
+
       - name: Run UI Tests
         run: |
           xcodebuild clean test \
@@ -79,8 +93,10 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Python dependencies
-        run: pip install -r Scripts/requirements.txt || true
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests  # Install the 'requests' module
 
       - name: Run API Tests
         run: python Scripts/api_test.py
