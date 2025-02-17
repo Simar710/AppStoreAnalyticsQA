@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		900CC8702D62BA1F005FAEBB /* AnalyticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CC86F2D62BA1A005FAEBB /* AnalyticsViewModel.swift */; };
+		900CC8762D62BD84005FAEBB /* AnalyticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CC8712D62BA59005FAEBB /* AnalyticsData.swift */; };
+		900CC8772D62BD8E005FAEBB /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900CC8732D62BA8B005FAEBB /* APIServices.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		900CC8502D62B95D005FAEBB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +33,28 @@
 		900CC83F2D62B95B005FAEBB /* AppStoreAnalyticsQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreAnalyticsQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		900CC84F2D62B95D005FAEBB /* AppStoreAnalyticsQATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreAnalyticsQATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		900CC8592D62B95D005FAEBB /* AppStoreAnalyticsQAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreAnalyticsQAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		900CC86F2D62BA1A005FAEBB /* AnalyticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsViewModel.swift; sourceTree = "<group>"; };
+		900CC8712D62BA59005FAEBB /* AnalyticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsData.swift; sourceTree = "<group>"; };
+		900CC8732D62BA8B005FAEBB /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
+		900CC8752D62BB32005FAEBB /* api_test.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = api_test.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		900CC8792D62C2A0005FAEBB /* Exceptions for "AppStoreAnalyticsQA" folder in "AppStoreAnalyticsQA" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 900CC83E2D62B95B005FAEBB /* AppStoreAnalyticsQA */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		900CC8412D62B95B005FAEBB /* AppStoreAnalyticsQA */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				900CC8792D62C2A0005FAEBB /* Exceptions for "AppStoreAnalyticsQA" folder in "AppStoreAnalyticsQA" target */,
+			);
 			path = AppStoreAnalyticsQA;
 			sourceTree = "<group>";
 		};
@@ -75,6 +98,10 @@
 		900CC8362D62B95B005FAEBB = {
 			isa = PBXGroup;
 			children = (
+				900CC8742D62BB2B005FAEBB /* Scripts */,
+				900CC86F2D62BA1A005FAEBB /* AnalyticsViewModel.swift */,
+				900CC86E2D62B9C6005FAEBB /* Services */,
+				900CC86D2D62B9BA005FAEBB /* Models */,
 				900CC8412D62B95B005FAEBB /* AppStoreAnalyticsQA */,
 				900CC8522D62B95D005FAEBB /* AppStoreAnalyticsQATests */,
 				900CC85C2D62B95D005FAEBB /* AppStoreAnalyticsQAUITests */,
@@ -90,6 +117,30 @@
 				900CC8592D62B95D005FAEBB /* AppStoreAnalyticsQAUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		900CC86D2D62B9BA005FAEBB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				900CC8712D62BA59005FAEBB /* AnalyticsData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		900CC86E2D62B9C6005FAEBB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				900CC8732D62BA8B005FAEBB /* APIServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		900CC8742D62BB2B005FAEBB /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				900CC8752D62BB32005FAEBB /* api_test.py */,
+			);
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				900CC8762D62BD84005FAEBB /* AnalyticsData.swift in Sources */,
+				900CC8702D62BA1F005FAEBB /* AnalyticsViewModel.swift in Sources */,
+				900CC8772D62BD8E005FAEBB /* APIServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +452,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppStoreAnalyticsQA/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppStoreAnalyticsQA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,6 +481,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AppStoreAnalyticsQA/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppStoreAnalyticsQA/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
