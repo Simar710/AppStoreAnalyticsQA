@@ -4,7 +4,8 @@ SwiftUI-based iOS app that simulates an App Store Analytics dashboard. It fetche
 
 - **iOS Client Development:** Modern Swift and SwiftUI usage, networking with URLSession, and error handling.
 - **Backend Integration:** Communication with a REST API (which you can simulate or point to a test server).
-Test Automation:
+
+### Test Automation:
 - **Charles Proxy:** Configured Charles Proxy to monitor HTTPS network traffic, aiding in debugging and data quality verification.
 - **Unit Tests:** Validating JSON decoding and model integrity.
 - **UI Tests:** Ensuring the dashboard loads and displays data correctly.
